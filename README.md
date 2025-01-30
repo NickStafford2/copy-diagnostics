@@ -51,16 +51,12 @@ A template repository used to create Neovim plugins.
 
 # Installation
 
-<!-- TODO: (you) - Adjust and add your dependencies as needed here -->
-
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
 {
     "NickStafford2/copy-diagnostics.nvim",
-    dependencies = { "NickStafford2/mega.cmdparse"},
-    -- TODO: (you) - Make sure your first release matches v1.0.0 so it auto-releases!
-    version = "v1.0.0",
+    version = "v1.0.3",
 }
 ```
 

@@ -2,7 +2,6 @@
 
 local _PLUGINS = {
     ["https://github.com/nvim-lua/plenary.nvim"] = os.getenv("PLENARY_DIR") or "/tmp/plenary.nvim",
-    ["https://github.com/NickStafford2/mega.cmdparse"] = os.getenv("MEGA_CMDPARSE_DIR") or "/tmp/mega.cmdparse",
 }
 
 local cloned = false
