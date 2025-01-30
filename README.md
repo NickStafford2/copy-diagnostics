@@ -55,8 +55,9 @@ A template repository used to create Neovim plugins.
 
 ```lua
 {
-    "NickStafford2/copy-diagnostics.nvim",
-    version = "v1.0.3",
+"https://github.com/NickStafford2/copy-diagnostics",
+    -- "NickStafford2/copy-diagnostics.nvim",
+    -- version = "v1.0.3",
 }
 ```
 
