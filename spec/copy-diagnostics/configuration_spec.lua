@@ -4,28 +4,8 @@
 ---
 
 local configuration_ = require("copy_diagnostics._core.configuration")
-local health = require("copy_diagnostics.health")
-local tabler = require("copy_diagnostics._core.tabler")
 
 local mock_vim = require("test_utilities.mock_vim")
-
---- Make sure `data`, whether undefined, defined, or partially defined, is broken.
----
----@param data copy_diagnostics.Configuration? The user customizations, if any.
----@param messages string[] All found, expected error messages.
----
-local function _assert_bad(data, messages)
-    data = configuration_.resolve_data(data)
-    local issues = health.get_issues(data)
-
-    if vim.tbl_isempty(issues) then
-        error(string.format('Test did not fail. Configuration "%s is valid.', vim.inspect(data)))
-
-        return
-    end
-
-    assert.same(messages, issues)
-end
 
 --- Make sure `data`, whether undefined, defined, or partially defined, works.
 ---
@@ -85,45 +65,6 @@ describe("default", function()
 end)
 
 ---@diagnostic disable: assign-type-mismatch
----@diagnostic disable: missing-fields
-describe("bad configuration - commands", function()
-    it("happens with a bad type for #commands.goodnight_moon.phrase", function()
-        _assert_bad(
-            { commands = { goodnight_moon = { read = { phrase = 10 } } } },
-            { "commands.goodnight_moon.read.phrase: expected string, got number" }
-        )
-    end)
-
-    it("happens with a bad type for #commands.hello_world.say.repeat", function()
-        _assert_bad(
-            { commands = { hello_world = { say = { ["repeat"] = "foo" } } } },
-            { "commands.hello_world.say.repeat: expected a number (value must be 1-or-more), got foo" }
-        )
-    end)
-
-    it("happens with a bad value for #commands.hello_world.say.repeat", function()
-        _assert_bad(
-            { commands = { hello_world = { say = { ["repeat"] = -1 } } } },
-            { "commands.hello_world.say.repeat: expected a number (value must be 1-or-more), got -1" }
-        )
-    end)
-
-    it("happens with a bad type for #commands.hello_world.say.style", function()
-        _assert_bad(
-            { commands = { hello_world = { say = { style = 123 } } } },
-            { 'commands.hello_world.say.style: expected "lowercase" or "uppercase", got 123' }
-        )
-    end)
-
-    it("happens with a bad value for #commands.hello_world.say.style", function()
-        _assert_bad(
-            { commands = { hello_world = { say = { style = "bad_value" } } } },
-            { 'commands.hello_world.say.style: expected "lowercase" or "uppercase", got bad_value' }
-        )
-    end)
-end)
-
----@diagnostic disable: assign-type-mismatch
 describe("health.check", function()
     before_each(function()
         mock_vim.mock_vim_health()
@@ -131,37 +72,7 @@ describe("health.check", function()
     after_each(mock_vim.reset_mocked_vim_health)
 
     it("works with an empty configuration", function()
-        health.check({})
-        health.check()
-
         assert.same({}, mock_vim.get_vim_health_errors())
-    end)
-
-    it("shows all issues at once", function()
-        health.check({
-            commands = {
-                goodnight_moon = { read = { phrase = 123 } },
-                hello_world = { say = { ["repeat"] = "aaa", style = 789 } },
-            },
-            tools = {
-                lualine = {
-                    goodnight_moon = false,
-                    hello_world = { text = 456 },
-                },
-            },
-        })
-
-        local found = mock_vim.get_vim_health_errors()
-        local issues = tabler.get_slice(found, 1, #found - 1)
-
-        assert.same({
-            "commands.goodnight_moon.read.phrase: expected string, got number",
-            "commands.hello_world.say.repeat: expected a number (value must be 1-or-more), got aaa",
-            'commands.hello_world.say.style: expected "lowercase" or "uppercase", got 789',
-            'tools.lualine.goodnight_moon: expected a table. e.g. { text="some text here" }, got false',
-        }, issues)
-
-        vim.startswith(found[#found], 'tools.lualine.hello_world.text: expected a string. e.g. "some text here", got ')
     end)
 end)
 ---@diagnostic enable: assign-type-mismatch

@@ -3,8 +3,6 @@
 ---@module 'copy_diagnostics._core.configuration'
 ---
 
-local say_constant = require("copy_diagnostics._commands.hello_world.say.constant")
-
 local M = {}
 
 -- NOTE: Don't remove this line. It makes the Lua module much easier to reload
@@ -18,42 +16,9 @@ M.DATA = {}
 ---@type copy_diagnostics.Configuration
 local _DEFAULTS = {}
 
--- TODO: (you) Update these sections depending on your intended plugin features.
 local _EXTRA_DEFAULTS = {
-    commands = {
-        goodnight_moon = { read = { phrase = "A good book" } },
-        hello_world = {
-            say = { ["repeat"] = 1, style = say_constant.Keyword.style.lowercase },
-        },
-    },
-    tools = {
-        lualine = {
-            arbitrary_thing = {
-                -- color = { link = "#555555" },
-                color = "Visual",
-                text = " Arbitrary Thing",
-            },
-            goodnight_moon = {
-                -- color = { fg = "#0000FF" },
-                color = "Question",
-                text = "⏾ Goodnight moon",
-            },
-            hello_world = {
-                -- color = { fg = "#FFA07A" },
-                color = "Title",
-                text = " Hello, World!",
-            },
-        },
-        telescope = {
-            goodnight_moon = {
-                { "Foo Book", "Author A" },
-                { "Bar Book Title", "John Doe" },
-                { "Fizz Drink", "Some Name" },
-                { "Buzz Bee", "Cool Person" },
-            },
-            hello_world = { "Hi there!", "Hello, Sailor!", "What's up, doc?" },
-        },
-    },
+    commands = {},
+    tools = {},
 }
 
 _DEFAULTS = vim.tbl_deep_extend("force", _DEFAULTS, _EXTRA_DEFAULTS)
