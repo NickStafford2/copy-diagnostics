@@ -2,8 +2,10 @@ name: LuaRocks release
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - main
+  workflow_dispatch:
+
 jobs:
   luarocks-release:
     runs-on: ubuntu-latest
