@@ -1,39 +1,10 @@
 --- All `copy_diagnostics` command definitions.
---
--- local cmdparse = require("mega.cmdparse")
---
--- local _PREFIX = "CopyDiagnostics"
---
--- ---@type mega.cmdparse.ParserCreator
--- local _SUBCOMMANDS = function()
---     local arbitrary_thing = require("copy_diagnostics._commands.arbitrary_thing.parser")
---     local goodnight_moon = require("copy_diagnostics._commands.goodnight_moon.parser")
---     local hello_world = require("copy_diagnostics._commands.hello_world.parser")
---
---     local parser = cmdparse.ParameterParser.new({ name = _PREFIX, help = "The root of all commands." })
---     local subparsers = parser:add_subparsers({ "commands", help = "All runnable commands." })
---
---     subparsers:add_parser(arbitrary_thing.make_parser())
---     subparsers:add_parser(goodnight_moon.make_parser())
---     subparsers:add_parser(hello_world.make_parser())
---
---     return parser
--- end
---
--- cmdparse.create_user_command(_SUBCOMMANDS, _PREFIX)
+local configuration = require("copy_diagnostics._core.configuration")
+configuration.initialize_data_if_needed()
+----------------------------------------------------------
 
---
--- vim.keymap.set("n", "<Plug>(CopyDiagnosticsSayHi)", function()
---     local configuration = require("copy_diagnostics._core.configuration")
---     local copy_diagnostics = require("plugin_template")
---
---     configuration.initialize_data_if_needed()
---
---     copy_diagnostics.run_hello_world_say_word("Hi!")
--- end, { desc = "Say hi to the user." })
-
-vim.keymap.set("n", "<Leader>cy", function()
-    print(1)
+-- vim.keymap.set("n", "<Leader>cy", function()
+vim.keymap.set("n", configuration.DATA.keymap, function()
     local diagnostics = vim.diagnostic.get(0, {})
     if not diagnostics or #diagnostics == 0 then
         print("No next diagnostic")

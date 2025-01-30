@@ -14,12 +14,9 @@ M.DATA = {}
 -- It's recommended to keep the `display` section in any case.
 --
 ---@type copy_diagnostics.Configuration
-local _DEFAULTS = {}
+local _DEFAULTS = { keymap = "<Leader>cy" }
 
-local _EXTRA_DEFAULTS = {
-    commands = {},
-    tools = {},
-}
+local _EXTRA_DEFAULTS = {}
 
 _DEFAULTS = vim.tbl_deep_extend("force", _DEFAULTS, _EXTRA_DEFAULTS)
 
