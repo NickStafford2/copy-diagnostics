@@ -60,7 +60,7 @@ A template repository used to create Neovim plugins.
     "NickStafford2/copy-diagnostics.nvim",
     dependencies = { "NickStafford2/mega.cmdparse"},
     -- TODO: (you) - Make sure your first release matches v1.0.0 so it auto-releases!
-    version = "v1.*",
+    version = "v1.0.0",
 }
 ```
 
@@ -82,11 +82,6 @@ A template repository used to create Neovim plugins.
                 hello_world = {
                     say = { ["repeat"] = 1, style = "lowercase" },
                 },
-            },
-            logging = {
-                level = "info",
-                use_console = false,
-                use_file = false,
             },
             tools = {
                 lualine = {
@@ -120,58 +115,6 @@ A template repository used to create Neovim plugins.
         }
     end
 }
-```
-
-## Lualine
-
-<!-- TODO: (you) - Remove this is you do not want lualine -->
-
-> Note: You can customize lualine colors here or using
-> `vim.g.copy_diagnostics_configuration`.
-
-[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-
-```lua
-require("lualine").setup {
-    sections = {
-        lualine_y = {
-            -- ... Your other configuration ...
-            {
-                "copy_diagnostics",
-                -- NOTE: These will override default values
-                -- display = {
-                --     goodnight_moon = {color={fg="#FFFFFF"}, text="Custom message 1"}},
-                --     hello_world = {color={fg="#333333"}, text="Custom message 2"},
-                -- },
-            },
-        }
-    }
-}
-```
-
-## Telescope
-
-<!-- TODO: (you) - Remove this is you do not want telescope -->
-
-> Note: You can customize telescope colors here or using
-> `vim.g.copy_diagnostics_configuration`.
-
-[telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-
-```lua
-{
-    "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
-    config = function()
-        -- ... Your other configuration ...
-        require("telescope").load_extension("copy_diagnostics")
-    end,
-    dependencies = {
-        "NickStafford2/copy-diagnostics.nvim",
-        "nvim-lua/plenary.nvim",
-    },
-    version = "0.1.*",
-},
 ```
 
 ### Colors
