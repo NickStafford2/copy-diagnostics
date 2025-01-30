@@ -24,9 +24,7 @@ copy_diagnostics.ConfigurationHelloWorld	plugin_template_types.txt	/*plugin_temp
 copy_diagnostics.ConfigurationHelloWorldSay	plugin_template_types.txt	/*plugin_template.ConfigurationHelloWorldSay*
 copy_diagnostics.ConfigurationTools	plugin_template_types.txt	/*plugin_template.ConfigurationTools*
 copy_diagnostics.ConfigurationToolsLualineData	plugin_template_types.txt	/*plugin_template.ConfigurationToolsLualineData*
-copy_diagnostics.LoggingConfiguration	plugin_template_types.txt	/*plugin_template.LoggingConfiguration*
 copy_diagnostics.run_arbitrary_thing()	plugin_template_api.txt	/*plugin_template.run_arbitrary_thing()*
-copy_diagnostics.run_copy_logs()	plugin_template_api.txt	/*plugin_template.run_copy_logs()*
 copy_diagnostics.run_goodnight_moon_count_sheep()	plugin_template_api.txt	/*plugin_template.run_goodnight_moon_count_sheep()*
 copy_diagnostics.run_goodnight_moon_read()	plugin_template_api.txt	/*plugin_template.run_goodnight_moon_read()*
 copy_diagnostics.run_goodnight_moon_sleep()	plugin_template_api.txt	/*plugin_template.run_goodnight_moon_sleep()*

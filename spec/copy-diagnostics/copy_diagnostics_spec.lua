@@ -8,8 +8,6 @@
 ---
 
 local configuration = require("copy_diagnostics._core.configuration")
-local copy_logs_runner = require("copy_diagnostics._commands.copy_logs.runner")
-local logging = require("mega.logging")
 local copy_diagnostics = require("plugin_template")
 
 ---@class copy_diagnostics.Configuration
@@ -18,7 +16,6 @@ local _CONFIGURATION_DATA
 ---@type string[]
 local _DATA = {}
 
-local _ORIGINAL_COPY_LOGS_READ_FILE = copy_logs_runner._read_file
 local _ORIGINAL_NOTIFY = vim.notify
 
 --- Keep track of text that would have been printed. Save it to a variable instead.
@@ -32,41 +29,6 @@ end
 --- Mock all functions / states before a unittest runs (call this before each test).
 local function _initialize_prints()
     vim.notify = _save_prints
-end
-
---- Watch the `copy-logs` API command for function calls.
-local function _initialize_copy_log()
-    local function _save_path(path)
-        _DATA = { path }
-    end
-
-    _CONFIGURATION_DATA = vim.deepcopy(configuration.DATA)
-    copy_logs_runner._read_file = _save_path
-end
-
---- Write a log file so we can query its later later.
-local function _make_fake_log(path)
-    configuration.DATA.logging.output_path = path
-    local logging_configuration = configuration.DATA.logging or {}
-    ---@cast logging_configuration mega.logging.SparseLoggerOptions
-    logging.set_configuration("copy_diagnostics", logging_configuration)
-
-    local file = io.open(path, "w") -- Open the file in write mode
-
-    if not file then
-        error(string.format('Path "%s" is not writable.', path))
-    end
-
-    file:write("aaa\nbbb\nccc\n")
-    file:close()
-end
-
---- Remove the "watcher" that we added during unittesting.
-local function _reset_copy_log()
-    copy_logs_runner._read_file = _ORIGINAL_COPY_LOGS_READ_FILE
-
-    configuration.DATA = _CONFIGURATION_DATA
-    _DATA = {}
 end
 
 --- Reset all functions / states to their previous settings before the test had run.
@@ -121,57 +83,6 @@ describe("arbitrary-thing commands", function()
         vim.cmd([[CopyDiagnostics arbitrary-thing -vvv -abc -f]])
 
         assert.same({ "-v, -v, -v, -a, -b, -c, -f" }, _DATA)
-    end)
-end)
-
-describe("copy logs API", function()
-    before_each(_initialize_copy_log)
-    after_each(_reset_copy_log)
-
-    it("runs with an explicit file path", function()
-        local path = vim.fn.tempname() .. "copy_logs_test.log"
-        _make_fake_log(path)
-
-        copy_diagnostics.run_copy_logs(path)
-        _wait_for_result()
-
-        assert.same({ path }, _DATA)
-    end)
-
-    it("runs with default arguments", function()
-        local expected = vim.fn.tempname() .. "_copy_logs_default_test.log"
-        _make_fake_log(expected)
-
-        copy_diagnostics.run_copy_logs()
-        _wait_for_result()
-
-        assert.same({ expected }, _DATA)
-    end)
-end)
-
-describe("copy logs command", function()
-    before_each(_initialize_copy_log)
-    after_each(_reset_copy_log)
-
-    it("runs with an explicit file path", function()
-        local expected = vim.fn.tempname() .. "_copy_logs_explicit_file_path_test.log"
-        _make_fake_log(expected)
-
-        vim.cmd(string.format('CopyDiagnostics copy-logs "%s"', expected))
-        _wait_for_result()
-
-        assert.same({ expected }, _DATA)
-    end)
-
-    it("runs with default arguments", function()
-        local expected = vim.fn.tempname() .. "_copy_logs_default_arguments_test.log"
-        _make_fake_log(expected)
-
-        vim.cmd([[CopyDiagnostics copy-logs]])
-
-        _wait_for_result()
-
-        assert.same({ expected }, _DATA)
     end)
 end)
 
@@ -296,11 +207,10 @@ describe("help API", function()
 
             assert.same({
                 [[
-Usage: CopyDiagnostics {arbitrary-thing,copy-logs,goodnight-moon,hello-world} [--help]
+Usage: CopyDiagnostics {arbitrary-thing,goodnight-moon,hello-world} [--help]
 
 Commands:
     arbitrary-thing    Prepare to sleep or sleep.
-    copy-logs    Get debug logs for CopyDiagnostics.
     goodnight-moon    Prepare to sleep or sleep.
     hello-world    Print hello to the user.
 
@@ -376,22 +286,6 @@ Options:
     -c    The -c flag.
     -f *    The -f flag.
     -v *    The -v flag.
-    --help -h    Show this help message and exit.
-]],
-            }, _DATA)
-        end)
-
-        it("works on the subparsers - 002", function()
-            vim.cmd([[CopyDiagnostics copy-logs --help]])
-
-            assert.same({
-                [[
-Usage: {copy-logs} LOG [--help]
-
-Positional Arguments:
-    LOG    The path on-disk to look for logs. If no path is given, a fallback log path is used instead.
-
-Options:
     --help -h    Show this help message and exit.
 ]],
             }, _DATA)

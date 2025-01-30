@@ -122,36 +122,6 @@ describe("bad configuration - commands", function()
         )
     end)
 end)
----@diagnostic enable: assign-type-mismatch
----@diagnostic enable: missing-fields
-
----@diagnostic disable: assign-type-mismatch
-describe("bad configuration - logging", function()
-    it("happens with a bad value for #logging", function()
-        _assert_bad({ logging = false }, { 'logging: expected a table. e.g. { level = "info", ... }, got false' })
-    end)
-
-    it("happens with a bad value for #logging.level", function()
-        _assert_bad({ logging = { level = false } }, {
-            "logging.level: expected an enum. "
-                .. 'e.g. "trace" | "debug" | "info" | "warn" | "error" | "fatal", got false',
-        })
-
-        _assert_bad({ logging = { level = "does not exist" } }, {
-            "logging.level: expected an enum. "
-                .. 'e.g. "trace" | "debug" | "info" | "warn" | "error" | "fatal", got does not exist',
-        })
-    end)
-
-    it("happens with a bad value for #logging.use_console", function()
-        _assert_bad({ logging = { use_console = "aaa" } }, { "logging.use_console: expected a boolean, got aaa" })
-    end)
-
-    it("happens with a bad value for #logging.use_file", function()
-        _assert_bad({ logging = { use_file = "aaa" } }, { "logging.use_file: expected a boolean, got aaa" })
-    end)
-end)
----@diagnostic enable: assign-type-mismatch
 
 ---@diagnostic disable: assign-type-mismatch
 describe("health.check", function()
@@ -173,11 +143,6 @@ describe("health.check", function()
                 goodnight_moon = { read = { phrase = 123 } },
                 hello_world = { say = { ["repeat"] = "aaa", style = 789 } },
             },
-            logging = {
-                level = false,
-                use_console = "aaa",
-                use_file = "fdas",
-            },
             tools = {
                 lualine = {
                     goodnight_moon = false,
@@ -193,9 +158,6 @@ describe("health.check", function()
             "commands.goodnight_moon.read.phrase: expected string, got number",
             "commands.hello_world.say.repeat: expected a number (value must be 1-or-more), got aaa",
             'commands.hello_world.say.style: expected "lowercase" or "uppercase", got 789',
-            'logging.level: expected an enum. e.g. "trace" | "debug" | "info" | "warn" | "error" | "fatal", got false',
-            "logging.use_console: expected a boolean, got aaa",
-            "logging.use_file: expected a boolean, got fdas",
             'tools.lualine.goodnight_moon: expected a table. e.g. { text="some text here" }, got false',
         }, issues)
 

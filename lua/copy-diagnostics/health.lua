@@ -7,12 +7,9 @@
 ---
 
 local configuration_ = require("copy_diagnostics._core.configuration")
-local logging_ = require("mega.logging")
 local say_constant = require("copy_diagnostics._commands.hello_world.say.constant")
 local tabler = require("copy_diagnostics._core.tabler")
 local texter = require("copy_diagnostics._core.texter")
-
-local _LOGGER = logging_.get_logger("copy_diagnostics.health")
 
 local M = {}
 
@@ -284,57 +281,6 @@ local function _get_lualine_issues(data)
     return output
 end
 
---- Check if logging configuration `data` has any issues.
----
----@param data copy_diagnostics.LoggingConfiguration The user's logger settings.
----@return string[] # All of the found issues, if any.
----
-local function _get_logging_issues(data)
-    local output = {}
-
-    _append_validated(output, "logging", function()
-        return data
-    end, function(value)
-        if type(value) ~= "table" then
-            return false
-        end
-
-        return true
-    end, 'a table. e.g. { level = "info", ... }')
-
-    if not vim.tbl_isempty(output) then
-        return output
-    end
-
-    _append_validated(output, "logging.level", function()
-        return data.level
-    end, function(value)
-        if type(value) ~= "string" then
-            return false
-        end
-
-        if not vim.tbl_contains({ "trace", "debug", "info", "warn", "error", "fatal" }, value) then
-            return false
-        end
-
-        return true
-    end, 'an enum. e.g. "trace" | "debug" | "info" | "warn" | "error" | "fatal"')
-
-    local message = _get_boolean_issue("logging.use_console", data.use_console)
-
-    if message ~= nil then
-        table.insert(output, message)
-    end
-
-    message = _get_boolean_issue("logging.use_file", data.use_file)
-
-    if message ~= nil then
-        table.insert(output, message)
-    end
-
-    return output
-end
-
 --- Check all "tools.lualine" values for issues.
 ---
 ---@param data copy_diagnostics.Configuration All of the user's fallback settings.
@@ -413,12 +359,6 @@ function M.get_issues(data)
     local output = {}
     vim.list_extend(output, _get_command_issues(data))
 
-    local logging = data.logging
-
-    if logging ~= nil then
-        vim.list_extend(output, _get_logging_issues(data.logging))
-    end
-
     local lualine = tabler.get_value(data, { "tools", "lualine" })
 
     if lualine ~= nil then
@@ -439,8 +379,6 @@ end
 ---@param data copy_diagnostics.Configuration? All extra customizations for this plugin.
 ---
 function M.check(data)
-    _LOGGER:debug("Running copy-diagnostics health check.")
-
     vim.health.start("Configuration")
 
     local issues = M.get_issues(data)

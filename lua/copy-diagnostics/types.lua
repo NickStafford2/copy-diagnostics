@@ -10,8 +10,6 @@
 ---    The user's customizations for this plugin.
 ---@field commands copy_diagnostics.ConfigurationCommands?
 ---    Customize the fallback behavior of all `:CopyDiagnostics` commands.
----@field logging copy_diagnostics.LoggingConfiguration?
----    Control how and which logs print to file / Neovim.
 ---@field tools copy_diagnostics.ConfigurationTools?
 ---    Optional third-party tool integrations.
 

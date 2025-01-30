@@ -86,7 +86,7 @@ A template repository used to create Neovim plugins.
 >lua
     {
         "NickStafford2/copy-diagnostics.nvim",
-        dependencies = { "NickStafford2/mega.cmdparse", "ColinKennedy/mega.logging" },
+        dependencies = { "NickStafford2/mega.cmdparse"},
         -- TODO: (you) - Make sure your first release matches v1.0.0 so it auto-releases!
         version = "v1.*",
     }

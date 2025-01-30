@@ -5,10 +5,6 @@
 
 local say_constant = require("copy_diagnostics._commands.hello_world.say.constant")
 
-local logging = require("mega.logging")
-
-local _LOGGER = logging.get_logger("copy_diagnostics._core.configuration")
-
 local M = {}
 
 -- NOTE: Don't remove this line. It makes the Lua module much easier to reload
@@ -17,15 +13,10 @@ vim.g.loaded_copy_diagnostics = false
 ---@type copy_diagnostics.Configuration
 M.DATA = {}
 
--- TODO: (you) If you use the mega.logging module for built-in logging, keep
--- the `logging` section. Otherwise delete it.
---
 -- It's recommended to keep the `display` section in any case.
 --
 ---@type copy_diagnostics.Configuration
-local _DEFAULTS = {
-    logging = { level = "info", use_console = false, use_file = false },
-}
+local _DEFAULTS = {}
 
 -- TODO: (you) Update these sections depending on your intended plugin features.
 local _EXTRA_DEFAULTS = {
@@ -41,11 +32,6 @@ local _EXTRA_DEFAULTS = {
                 -- color = { link = "#555555" },
                 color = "Visual",
                 text = " Arbitrary Thing",
-            },
-            copy_logs = {
-                -- color = { link = "#D3D3D3" },
-                color = "Comment",
-                text = "󰈔 Copy Logs",
             },
             goodnight_moon = {
                 -- color = { fg = "#0000FF" },
@@ -81,12 +67,6 @@ function M.initialize_data_if_needed()
     M.DATA = vim.tbl_deep_extend("force", _DEFAULTS, vim.g.copy_diagnostics_configuration or {})
 
     vim.g.loaded_copy_diagnostics = true
-
-    local configuration = M.DATA.logging or {}
-    ---@cast configuration mega.logging.SparseLoggerOptions
-    logging.set_configuration("copy_diagnostics", configuration)
-
-    _LOGGER:fmt_debug("Initialized copy-diagnostics's configuration.")
 end
 
 --- Merge `data` with the user's current configuration.

@@ -4,9 +4,6 @@
 ---
 
 local constant = require("copy_diagnostics._commands.hello_world.say.constant")
-local logging = require("mega.logging")
-
-local _LOGGER = logging.get_logger("copy_diagnostics._commands.hello_world.say.runner")
 
 local M = {}
 
@@ -71,8 +68,6 @@ end
 ---    Control how the text should be shown.
 ---
 function M.run_say_phrase(phrase, repeat_, style)
-    _LOGGER:debug("Running hello-world say word.")
-
     phrase = _filter_missing_strings(phrase)
 
     if vim.tbl_isempty(phrase) then
@@ -96,8 +91,6 @@ end
 ---    Control how the text should be shown.
 ---
 function M.run_say_word(word, repeat_, style)
-    _LOGGER:debug("Running hello-world say word.")
-
     if word == "" then
         vim.notify("No word was given", vim.log.levels.INFO)
 

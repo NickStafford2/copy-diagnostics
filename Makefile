@@ -14,7 +14,6 @@ CONFIGURATION = .luarc.json
 clone_git_dependencies:
 	git clone git@github.com:Bilal2453/luvit-meta.git .dependencies/luvit-meta $(IGNORE_EXISTING)
 	git clone git@github.com:NickStafford2/mega.cmdparse.git .dependencies/mega.cmdparse $(IGNORE_EXISTING)
-	git clone git@github.com:NickStafford2/mega.logging.git .dependencies/mega.logging $(IGNORE_EXISTING)
 	git clone git@github.com:LuaCATS/busted.git .dependencies/busted $(IGNORE_EXISTING)
 	git clone git@github.com:LuaCATS/luassert.git .dependencies/luassert $(IGNORE_EXISTING)
 

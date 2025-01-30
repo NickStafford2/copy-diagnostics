@@ -12,8 +12,6 @@ operation of this Lua plugin.
 Fields ~
     {commands} copy_diagnostics.ConfigurationCommands?
        Customize the fallback behavior of all `:CopyDiagnostics` commands.
-    {logging} copy_diagnostics.LoggingConfiguration?
-       Control how and which logs print to file / Neovim.
     {tools} copy_diagnostics.ConfigurationTools?
        Optional third-party tool integrations.
 
@@ -34,32 +32,6 @@ Fields ~
 Fields ~
     {read} copy_diagnostics.ConfigurationGoodnightMoonRead?
        The default values when a user calls `:CopyDiagnostics goodnight-moon read`.
-
-------------------------------------------------------------------------------
-*copy_diagnostics.LoggingConfiguration*
-   Control whether or not logging is printed to the console or to disk.
-
-Fields ~
-    {level} (
-       | "trace"
-       | "debug"
-       | "info"
-       | "warn" | "error"
-       | "fatal"
-       | vim.log.levels.DEBUG
-       | vim.log.levels.ERROR
-       | vim.log.levels.INFO
-       | vim.log.levels.TRACE
-       | vim.log.levels.WARN)?
-       Any messages above this level will be logged.
-    {use_console} `(boolean?)`
-       Should print the output to neovim while running. Warning: This is very
-       spammy. You probably don't want to enable this unless you have to.
-    {use_file} `(boolean?)`
-       Should write to a file.
-    {output_path} `(string?)`
-       The default path on-disk where log files will be written to.
-       Defaults to "/home/selecaoone/.local/share/nvim/plugin_name.log".
 
 ------------------------------------------------------------------------------
 *copy_diagnostics.ConfigurationGoodnightMoonRead*
