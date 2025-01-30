@@ -20,16 +20,10 @@ description = {
     homepage = "https://github.com/" .. user .. "/" .. package,
     labels = { "neovim", "neovim-plugin" },
     license = "MIT",
-    summary = 'A "Best Practices" Neovim plugin template',
+    summary = 'A very simple Neovim plugin for copying diagnostics from the current line to the clipboard.',
 }
 
-dependencies = {
-    "mega.cmdparse >= 1.0.3, < 2.0",
-
-    -- TODO(you): Remove these dependencies if you don't need them
-    -- "lualine.nvim", -- Reference: https://luarocks.org/modules/neorocks/lualine.nvim
-    "telescope.nvim >= 0.1.8 < 1.0",
-}
+dependencies = {}
 
 test_dependencies = {
     "busted >= 2.0, < 3.0",
