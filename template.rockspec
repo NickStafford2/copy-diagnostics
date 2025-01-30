@@ -18,8 +18,8 @@ local user = "NickStafford2"
 
 description = {
     homepage = "https://github.com/" .. user .. "/" .. package,
-    labels = { "neovim", "neovim-plugin" },
-    license = "MIT",
+    labels = { "neovim", "neovim-plugin", "copy-diagnostics" },
+    license = "GNU3",
     summary = 'A very simple Neovim plugin for copying diagnostics from the current line to the clipboard.',
 }
 

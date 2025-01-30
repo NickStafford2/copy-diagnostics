@@ -28,7 +28,7 @@ A template repository used to create Neovim plugins.
   Build     [unittests] [documentation] [luacheck] [llscheck] [stylua]
   Status    [urlchecker]
 
-  License   [License-MIT]
+  License   [License-GNU3]
 
   Social    [RSS]
   --------------------------------------------------------------------------------
