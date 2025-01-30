@@ -7,7 +7,6 @@ local _PREFIX = "CopyDiagnostics"
 ---@type mega.cmdparse.ParserCreator
 local _SUBCOMMANDS = function()
     local arbitrary_thing = require("copy_diagnostics._commands.arbitrary_thing.parser")
-    local copy_logs = require("copy_diagnostics._commands.copy_logs.parser")
     local goodnight_moon = require("copy_diagnostics._commands.goodnight_moon.parser")
     local hello_world = require("copy_diagnostics._commands.hello_world.parser")
 
@@ -15,7 +14,6 @@ local _SUBCOMMANDS = function()
     local subparsers = parser:add_subparsers({ "commands", help = "All runnable commands." })
 
     subparsers:add_parser(arbitrary_thing.make_parser())
-    subparsers:add_parser(copy_logs.make_parser())
     subparsers:add_parser(goodnight_moon.make_parser())
     subparsers:add_parser(hello_world.make_parser())
 

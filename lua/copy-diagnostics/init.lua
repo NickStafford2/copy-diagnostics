@@ -8,7 +8,6 @@
 
 local configuration = require("copy_diagnostics._core.configuration")
 local arbitrary_thing_runner = require("copy_diagnostics._commands.arbitrary_thing.runner")
-local copy_logs_runner = require("copy_diagnostics._commands.copy_logs.runner")
 local count_sheep = require("copy_diagnostics._commands.goodnight_moon.count_sheep")
 local read = require("copy_diagnostics._commands.goodnight_moon.read")
 local say_runner = require("copy_diagnostics._commands.hello_world.say.runner")
@@ -26,16 +25,6 @@ configuration.initialize_data_if_needed()
 ---
 function M.run_arbitrary_thing(names)
     arbitrary_thing_runner.run(names)
-end
-
---- Copy the log data from the given `path` to the user's clipboard.
----
----@param path string?
----    A path on-disk to look for logs. If none is given, the default fallback
----    location is used instead.
----
-function M.run_copy_logs(path)
-    copy_logs_runner.run(path)
 end
 
 --- Print `phrase` according to the other options.
