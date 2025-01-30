@@ -1,6 +1,6 @@
 --- Make manipulating Lua text easier.
 ---
----@module 'plugin_template._core.texter'
+---@module 'copy_diagnostics._core.texter'
 ---
 
 local M = {}

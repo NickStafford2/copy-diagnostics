@@ -1,10 +1,10 @@
---- The main parser for the `:PluginTemplate hello-world` command.
+--- The main parser for the `:CopyDiagnostics hello-world` command.
 ---
----@module 'plugin_template._commands.hello_world.parser'
+---@module 'copy_diagnostics._commands.hello_world.parser'
 ---
 
 local cmdparse = require("mega.cmdparse")
-local constant = require("plugin_template._commands.hello_world.say.constant")
+local constant = require("copy_diagnostics._commands.hello_world.say.constant")
 
 local M = {}
 
@@ -62,7 +62,7 @@ local function _add_style_parameter(parser)
     })
 end
 
----@return mega.cmdparse.ParameterParser # The main parser for the `:PluginTemplate hello-world` command.
+---@return mega.cmdparse.ParameterParser # The main parser for the `:CopyDiagnostics hello-world` command.
 function M.make_parser()
     local parser = cmdparse.ParameterParser.new({ "hello-world", help = "Print hello to the user." })
     local top_subparsers =
@@ -85,7 +85,7 @@ function M.make_parser()
 
     phrase:set_execute(function(data)
         ---@cast data mega.cmdparse.NamespaceExecuteArguments
-        local runner = require("plugin_template._commands.hello_world.say.runner")
+        local runner = require("copy_diagnostics._commands.hello_world.say.runner")
 
         local phrases = data.namespace.phrases
 
@@ -98,7 +98,7 @@ function M.make_parser()
 
     word:set_execute(function(data)
         ---@cast data mega.cmdparse.NamespaceExecuteArguments
-        local runner = require("plugin_template._commands.hello_world.say.runner")
+        local runner = require("copy_diagnostics._commands.hello_world.say.runner")
 
         runner.run_say_word(data.namespace.word or "", data.namespace["repeat"], data.namespace.style)
     end)

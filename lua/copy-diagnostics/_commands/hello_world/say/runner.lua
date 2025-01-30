@@ -1,12 +1,12 @@
 --- The main file that implements `hello-world say` outside of COMMAND mode.
 ---
----@module 'plugin_template._commands.hello_world.say.runner'
+---@module 'copy_diagnostics._commands.hello_world.say.runner'
 ---
 
-local constant = require("plugin_template._commands.hello_world.say.constant")
+local constant = require("copy_diagnostics._commands.hello_world.say.constant")
 local logging = require("mega.logging")
 
-local _LOGGER = logging.get_logger("plugin_template._commands.hello_world.say.runner")
+local _LOGGER = logging.get_logger("copy_diagnostics._commands.hello_world.say.runner")
 
 local M = {}
 

@@ -4,24 +4,24 @@ A template repository used to create Neovim plugins.
 
 | <!-- -->     | <!-- -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Build Status | [![unittests](https://img.shields.io/github/actions/workflow/status/ColinKennedy/nvim-best-practices-plugin-template/test.yml?branch=main&style=for-the-badge&label=Unittests)](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/actions/workflows/test.yml)  [![documentation](https://img.shields.io/github/actions/workflow/status/ColinKennedy/nvim-best-practices-plugin-template/documentation.yml?branch=main&style=for-the-badge&label=Documentation)](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/actions/workflows/documentation.yml)  [![luacheck](https://img.shields.io/github/actions/workflow/status/ColinKennedy/nvim-best-practices-plugin-template/luacheck.yml?branch=main&style=for-the-badge&label=Luacheck)](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/actions/workflows/luacheck.yml) [![llscheck](https://img.shields.io/github/actions/workflow/status/ColinKennedy/nvim-best-practices-plugin-template/llscheck.yml?branch=main&style=for-the-badge&label=llscheck)](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/actions/workflows/llscheck.yml) [![stylua](https://img.shields.io/github/actions/workflow/status/ColinKennedy/nvim-best-practices-plugin-template/stylua.yml?branch=main&style=for-the-badge&label=Stylua)](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/actions/workflows/stylua.yml)  [![urlchecker](https://img.shields.io/github/actions/workflow/status/ColinKennedy/nvim-best-practices-plugin-template/urlchecker.yml?branch=main&style=for-the-badge&label=URLChecker)](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/actions/workflows/urlchecker.yml)  |
-| License      | [![License-MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/blob/main/LICENSE)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Social       | [![RSS](https://img.shields.io/badge/rss-F88900?style=for-the-badge&logo=rss&logoColor=white)](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/commits/main/doc/news.txt.atom)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Build Status | [![unittests](https://img.shields.io/github/actions/workflow/status/NickStafford2/copy-diagnostics.nvim/test.yml?branch=main&style=for-the-badge&label=Unittests)](https://github.com/ColinKennedy/copy-diagnostics.nvim/actions/workflows/test.yml)  [![documentation](https://img.shields.io/github/actions/workflow/status/ColinKennedy/copy-diagnostics.nvim/documentation.yml?branch=main&style=for-the-badge&label=Documentation)](https://github.com/ColinKennedy/copy-diagnostics.nvim/actions/workflows/documentation.yml)  [![luacheck](https://img.shields.io/github/actions/workflow/status/ColinKennedy/copy-diagnostics.nvim/luacheck.yml?branch=main&style=for-the-badge&label=Luacheck)](https://github.com/ColinKennedy/copy-diagnostics.nvim/actions/workflows/luacheck.yml) [![llscheck](https://img.shields.io/github/actions/workflow/status/ColinKennedy/copy-diagnostics.nvim/llscheck.yml?branch=main&style=for-the-badge&label=llscheck)](https://github.com/ColinKennedy/copy-diagnostics.nvim/actions/workflows/llscheck.yml) [![stylua](https://img.shields.io/github/actions/workflow/status/ColinKennedy/copy-diagnostics.nvim/stylua.yml?branch=main&style=for-the-badge&label=Stylua)](https://github.com/ColinKennedy/copy-diagnostics.nvim/actions/workflows/stylua.yml)  [![urlchecker](https://img.shields.io/github/actions/workflow/status/ColinKennedy/copy-diagnostics.nvim/urlchecker.yml?branch=main&style=for-the-badge&label=URLChecker)](https://github.com/ColinKennedy/copy-diagnostics.nvim/actions/workflows/urlchecker.yml)  |
+| License      | [![License-MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](https://github.com/NickStafford2/copy-diagnostics.nvim/blob/main/LICENSE)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Social       | [![RSS](https://img.shields.io/badge/rss-F88900?style=for-the-badge&logo=rss&logoColor=white)](https://github.com/NickStafford2/copy-diagnostics.nvim/commits/main/doc/news.txt.atom)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 
 # Features
 - Follows [nvim-best-practices](https://github.com/nvim-neorocks/nvim-best-practices)
 - Fast start-up (~1 ms)
-- Auto-release to [luarocks](https://luarocks.org) & [GitHub](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/releases)
+- Auto-release to [luarocks](https://luarocks.org) & [GitHub](https://github.com/NickStafford2/copy-diagnostics.nvim/releases)
 - Automated user documentation (using [panvimdoc](https://github.com/kdheepak/panvimdoc))
 - Automated API documentation (using [mini.doc](https://github.com/echasnovski/mini.doc))
 - Vimtags generation
 - Built-in Vim commands
 - A high quality command mode parser
 - Auto-completes your commands at any cursor position
-- No external dependencies[*](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/wiki/External-Dependencies-Disclaimer)
+- No external dependencies[*](https://github.com/NickStafford2/copy-diagnostics.nvim/wiki/External-Dependencies-Disclaimer)
 - [LuaCATS](https://luals.github.io/wiki/annotations/) annotations and type-hints, everywhere
-- [RSS feed support](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/commits/main/doc/news.txt.atom)
+- [RSS feed support](https://github.com/NickStafford2/copy-diagnostics.nvim/commits/main/doc/news.txt.atom)
 - Built-in logging to stdout / files
 - Unittests use the full power of native [busted](https://github.com/lunarmodules/busted)
 - Automated testing matrix supports 9 Neovim/OS combinations
@@ -38,7 +38,7 @@ A template repository used to create Neovim plugins.
     - [llscheck](https://github.com/jeffzi/llscheck) - Checks for Lua type mismatches
     - [luacheck](https://github.com/mpeterv/luacheck) - Checks for Lua code issues
     - [luarocks](https://luarocks.org) auto-release ([LUAROCKS_API_KEY secret](https://github.com/nvim-neorocks/sample-luarocks-plugin?tab=readme-ov-file#publishing-to-luarocks) configuration required)
-    - [GitHub](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/releases) auto-release ([PERSONAL_ACCESS_TOKEN secret](https://github.com/nvim-neorocks/sample-luarocks-plugin?tab=readme-ov-file#installing-release-please-recommended) configuration required)
+    - [GitHub](https://github.com/NickStafford2/copy-diagnostics.nvim/releases) auto-release ([PERSONAL_ACCESS_TOKEN secret](https://github.com/nvim-neorocks/sample-luarocks-plugin?tab=readme-ov-file#installing-release-please-recommended) configuration required)
     - [mini.doc](https://github.com/echasnovski/mini.doc) - API documentation auto-generator
     - [panvimdoc](https://github.com/kdheepak/panvimdoc) - User documentation auto-generator
     - [urlchecker](https://github.com/urlstechie/urlchecker-action) - Checks for broken URL links
@@ -46,7 +46,7 @@ A template repository used to create Neovim plugins.
 
 
 # Using This Template
-1. Follow the [Wiki instructions](https://github.com/ColinKennedy/nvim-best-practices-plugin-template/wiki/Using-This-Template)
+1. Follow the [Wiki instructions](https://github.com/NickStafford2/copy-diagnostics.nvim/wiki/Using-This-Template)
 2. Once you're done, remove this section (the rest of this README.md file should be kept / customized to your needs)
 
 
@@ -55,8 +55,8 @@ A template repository used to create Neovim plugins.
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 ```lua
 {
-    "ColinKennedy/nvim-best-practices-plugin-template",
-    dependencies = { "ColinKennedy/mega.cmdparse", "ColinKennedy/mega.logging" },
+    "NickStafford2/copy-diagnostics.nvim",
+    dependencies = { "NickStafford2/mega.cmdparse", "ColinKennedy/mega.logging" },
     -- TODO: (you) - Make sure your first release matches v1.0.0 so it auto-releases!
     version = "v1.*",
 }
@@ -71,9 +71,9 @@ A template repository used to create Neovim plugins.
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 ```lua
 {
-    "ColinKennedy/nvim-best-practices-plugin-template",
+    "NickStafford2/copy-diagnostics.nvim",
     config = function()
-        vim.g.plugin_template_configuration = {
+        vim.g.copy_diagnostics_configuration = {
             commands = {
                 goodnight_moon = { read = { phrase = "A good book" } },
                 hello_world = {
@@ -125,7 +125,7 @@ A template repository used to create Neovim plugins.
 <!-- TODO: (you) - Remove this is you do not want lualine -->
 
 > Note: You can customize lualine colors here or using
-> `vim.g.plugin_template_configuration`.
+> `vim.g.copy_diagnostics_configuration`.
 
 [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 ```lua
@@ -134,7 +134,7 @@ require("lualine").setup {
         lualine_y = {
             -- ... Your other configuration ...
             {
-                "plugin_template",
+                "copy_diagnostics",
                 -- NOTE: These will override default values
                 -- display = {
                 --     goodnight_moon = {color={fg="#FFFFFF"}, text="Custom message 1"}},
@@ -152,7 +152,7 @@ require("lualine").setup {
 <!-- TODO: (you) - Remove this is you do not want telescope -->
 
 > Note: You can customize telescope colors here or using
-> `vim.g.plugin_template_configuration`.
+> `vim.g.copy_diagnostics_configuration`.
 
 [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 ```lua
@@ -161,10 +161,10 @@ require("lualine").setup {
     cmd = "Telescope",
     config = function()
         -- ... Your other configuration ...
-        require("telescope").load_extension("plugin_template")
+        require("telescope").load_extension("copy_diagnostics")
     end,
     dependencies = {
-        "ColinKennedy/nvim-best-practices-plugin-template",
+        "NickStafford2/copy-diagnostics.nvim",
         "nvim-lua/plenary.nvim",
     },
     version = "0.1.*",
@@ -175,13 +175,13 @@ require("lualine").setup {
 ### Colors
 This plugin provides two default highlights
 
-- `PluginTemplateTelescopeEntry`
-- `PluginTemplateTelescopeSecondary`
+- `CopyDiagnosticsTelescopeEntry`
+- `CopyDiagnosticsTelescopeSecondary`
 
 Both come with default colors that should look nice. If you want to change them, here's how:
 ```lua
-vim.api.nvim_set_hl(0, "PluginTemplateTelescopeEntry", {link="Statement"})
-vim.api.nvim_set_hl(0, "PluginTemplateTelescopeSecondary", {link="Question"})
+vim.api.nvim_set_hl(0, "CopyDiagnosticsTelescopeEntry", {link="Statement"})
+vim.api.nvim_set_hl(0, "CopyDiagnosticsTelescopeSecondary", {link="Question"})
 ```
 
 
@@ -189,20 +189,20 @@ vim.api.nvim_set_hl(0, "PluginTemplateTelescopeSecondary", {link="Question"})
 Here are some example commands:
 
 <!-- TODO: (you) - You'll probably want to change all this or remove it. See -->
-<!-- plugin/plugin_template.lua for details. -->
+<!-- plugin/copy_diagnostics.lua for details. -->
 
 ```vim
 " A typical subcommand
-:PluginTemplate hello-world say phrase "Hello, World!" " How are you?"
-:PluginTemplate hello-world say phrase "Hello, World!" --repeat=2 --style=lowercase
+:CopyDiagnostics hello-world say phrase "Hello, World!" " How are you?"
+:CopyDiagnostics hello-world say phrase "Hello, World!" --repeat=2 --style=lowercase
 
 " An example of a flag this repeatable and 3 flags, -a, -b, -c, as one dash
-:PluginTemplate arbitrary-thing -vvv -abc -f
+:CopyDiagnostics arbitrary-thing -vvv -abc -f
 
 " Separate commands with completely separate, flexible APIs
-:PluginTemplate goodnight-moon count-sheep 42
-:PluginTemplate goodnight-moon read "a book"
-:PluginTemplate goodnight-moon sleep -z -z -z
+:CopyDiagnostics goodnight-moon count-sheep 42
+:CopyDiagnostics goodnight-moon read "a book"
+:CopyDiagnostics goodnight-moon sleep -z -z -z
 ```
 
 
@@ -237,7 +237,7 @@ See [doc/news.txt](doc/news.txt) for updates.
 
 You can watch this plugin for changes by adding this URL to your RSS feed:
 ```
-https://github.com/ColinKennedy/nvim-best-practices-plugin-template/commits/main/doc/news.txt.atom
+https://github.com/NickStafford2/copy-diagnostics.nvim/commits/main/doc/news.txt.atom
 ```
 
 
@@ -245,4 +245,4 @@ https://github.com/ColinKennedy/nvim-best-practices-plugin-template/commits/main
 This template is full of various features. But if your plugin is only meant to
 be a simple plugin and you don't want the bells and whistles that this template
 provides, consider instead using
-[nvim-plugin-template](https://github.com/ellisonleao/nvim-plugin-template)
+[nvim-copy-diagnostics](https://github.com/ellisonleao/nvim-plugin-template)

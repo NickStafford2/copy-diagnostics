@@ -2,33 +2,33 @@
 ---
 ---@source https://github.com/nvim-lualine/lualine.nvim
 ---
----@module 'lualine.components.plugin_template'
+---@module 'lualine.components.copy_diagnostics'
 ---
 
-local arbitrary_thing_runner = require("plugin_template._commands.arbitrary_thing.runner")
-local configuration = require("plugin_template._core.configuration")
-local copy_log_runner = require("plugin_template._commands.copy_logs.runner")
-local count_sheep = require("plugin_template._commands.goodnight_moon.count_sheep")
+local arbitrary_thing_runner = require("copy_diagnostics._commands.arbitrary_thing.runner")
+local configuration = require("copy_diagnostics._core.configuration")
+local copy_log_runner = require("copy_diagnostics._commands.copy_logs.runner")
+local count_sheep = require("copy_diagnostics._commands.goodnight_moon.count_sheep")
 local lualine_require = require("lualine_require")
 local modules = lualine_require.lazy_require({ highlight = "lualine.highlight" })
-local read = require("plugin_template._commands.goodnight_moon.read")
-local say_runner = require("plugin_template._commands.hello_world.say.runner")
-local sleep = require("plugin_template._commands.goodnight_moon.sleep")
-local tabler = require("plugin_template._core.tabler")
+local read = require("copy_diagnostics._commands.goodnight_moon.read")
+local say_runner = require("copy_diagnostics._commands.hello_world.say.runner")
+local sleep = require("copy_diagnostics._commands.goodnight_moon.sleep")
+local tabler = require("copy_diagnostics._core.tabler")
 
 local M = require("lualine.component"):extend()
 
 ---@type string?
 M.PREVIOUS_COMMAND = nil
 
----@class plugin_template.LualineConfiguration
+---@class copy_diagnostics.LualineConfiguration
 ---    The Raw user settings from lualine's configuration.
----    e.g. `require("lualine").setup { sections = { { "plugin_template", ... }}}`
+---    e.g. `require("lualine").setup { sections = { { "copy_diagnostics", ... }}}`
 ---    where "..." is the user's settings.
----@field display table<string, plugin_template.LualineDisplayData>?
+---@field display table<string, copy_diagnostics.LualineDisplayData>?
 
----@class plugin_template.LualineDisplayData
----    Any text, icons, etc that will be displayed for `plugin_template` commands.
+---@class copy_diagnostics.LualineDisplayData
+---    Any text, icons, etc that will be displayed for `copy_diagnostics` commands.
 ---@field prefix string
 ---    The text to display when a command was called. e.g. " Goodnight moon".
 
@@ -63,13 +63,13 @@ _patch_runner_commands(sleep, { "run" }, "goodnight_moon")
 
 --- Setup all colors / text for lualine to display later.
 ---
----@param options plugin_template.LualineConfiguration?
+---@param options copy_diagnostics.LualineConfiguration?
 ---    The options to pass from lualine to `plugin_templaet`.
 ---
 function M:init(options)
     configuration.initialize_data_if_needed()
 
-    --- @type table<string, plugin_template.LualineDisplayData>
+    --- @type table<string, copy_diagnostics.LualineDisplayData>
     local data
 
     if options then
@@ -93,22 +93,22 @@ function M:init(options)
     self._highlight_groups = {
         arbitrary_thing = modules.highlight.create_component_highlight_group(
             defaults.arbitrary_thing.color or "Visual",
-            "plugin_template_arbitrary_thing",
+            "copy_diagnostics_arbitrary_thing",
             self.options
         ),
         copy_logs = modules.highlight.create_component_highlight_group(
             defaults.copy_logs.color or "Comment",
-            "plugin_template_copy_logs",
+            "copy_diagnostics_copy_logs",
             self.options
         ),
         goodnight_moon = modules.highlight.create_component_highlight_group(
             defaults.goodnight_moon.color or "Question",
-            "plugin_template_goodnight_moon",
+            "copy_diagnostics_goodnight_moon",
             self.options
         ),
         hello_world = modules.highlight.create_component_highlight_group(
             defaults.hello_world.color or "Title",
-            "plugin_template_hello_world",
+            "copy_diagnostics_hello_world",
             self.options
         ),
     }

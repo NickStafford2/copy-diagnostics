@@ -4,15 +4,15 @@
 --- likely want to delete or heavily modify this file. But it does give a quick
 --- look how to mock a test and some things you can do with Neovim/busted.
 ---
----@module 'plugin_template.plugin_template_spec'
+---@module 'copy_diagnostics.plugin_template_spec'
 ---
 
-local configuration = require("plugin_template._core.configuration")
-local copy_logs_runner = require("plugin_template._commands.copy_logs.runner")
+local configuration = require("copy_diagnostics._core.configuration")
+local copy_logs_runner = require("copy_diagnostics._commands.copy_logs.runner")
 local logging = require("mega.logging")
-local plugin_template = require("plugin_template")
+local copy_diagnostics = require("plugin_template")
 
----@class plugin_template.Configuration
+---@class copy_diagnostics.Configuration
 local _CONFIGURATION_DATA
 
 ---@type string[]
@@ -49,7 +49,7 @@ local function _make_fake_log(path)
     configuration.DATA.logging.output_path = path
     local logging_configuration = configuration.DATA.logging or {}
     ---@cast logging_configuration mega.logging.SparseLoggerOptions
-    logging.set_configuration("plugin_template", logging_configuration)
+    logging.set_configuration("copy_diagnostics", logging_configuration)
 
     local file = io.open(path, "w") -- Open the file in write mode
 
@@ -96,13 +96,13 @@ describe("arbitrary-thing API", function()
     after_each(_reset_prints)
 
     it("runs #arbitrary-thing with #default arguments", function()
-        plugin_template.run_arbitrary_thing({})
+        copy_diagnostics.run_arbitrary_thing({})
 
         assert.same({ "<No text given>" }, _DATA)
     end)
 
     it("runs #arbitrary-thing with arguments", function()
-        plugin_template.run_arbitrary_thing({ "v", "t" })
+        copy_diagnostics.run_arbitrary_thing({ "v", "t" })
 
         assert.same({ "v, t" }, _DATA)
     end)
@@ -113,12 +113,12 @@ describe("arbitrary-thing commands", function()
     after_each(_reset_prints)
 
     it("runs #arbitrary-thing with #default arguments", function()
-        vim.cmd([[PluginTemplate arbitrary-thing]])
+        vim.cmd([[CopyDiagnostics arbitrary-thing]])
         assert.same({ "<No text given>" }, _DATA)
     end)
 
     it("runs #arbitrary-thing with arguments", function()
-        vim.cmd([[PluginTemplate arbitrary-thing -vvv -abc -f]])
+        vim.cmd([[CopyDiagnostics arbitrary-thing -vvv -abc -f]])
 
         assert.same({ "-v, -v, -v, -a, -b, -c, -f" }, _DATA)
     end)
@@ -132,7 +132,7 @@ describe("copy logs API", function()
         local path = vim.fn.tempname() .. "copy_logs_test.log"
         _make_fake_log(path)
 
-        plugin_template.run_copy_logs(path)
+        copy_diagnostics.run_copy_logs(path)
         _wait_for_result()
 
         assert.same({ path }, _DATA)
@@ -142,7 +142,7 @@ describe("copy logs API", function()
         local expected = vim.fn.tempname() .. "_copy_logs_default_test.log"
         _make_fake_log(expected)
 
-        plugin_template.run_copy_logs()
+        copy_diagnostics.run_copy_logs()
         _wait_for_result()
 
         assert.same({ expected }, _DATA)
@@ -157,7 +157,7 @@ describe("copy logs command", function()
         local expected = vim.fn.tempname() .. "_copy_logs_explicit_file_path_test.log"
         _make_fake_log(expected)
 
-        vim.cmd(string.format('PluginTemplate copy-logs "%s"', expected))
+        vim.cmd(string.format('CopyDiagnostics copy-logs "%s"', expected))
         _wait_for_result()
 
         assert.same({ expected }, _DATA)
@@ -167,7 +167,7 @@ describe("copy logs command", function()
         local expected = vim.fn.tempname() .. "_copy_logs_default_arguments_test.log"
         _make_fake_log(expected)
 
-        vim.cmd([[PluginTemplate copy-logs]])
+        vim.cmd([[CopyDiagnostics copy-logs]])
 
         _wait_for_result()
 
@@ -180,31 +180,31 @@ describe("hello world API - say phrase/word", function()
     after_each(_reset_prints)
 
     it("runs #hello-world with default `say phrase` arguments - 001", function()
-        plugin_template.run_hello_world_say_phrase({ "" })
+        copy_diagnostics.run_hello_world_say_phrase({ "" })
 
         assert.same({ "No phrase was given" }, _DATA)
     end)
 
     it("runs #hello-world with default `say phrase` arguments - 002", function()
-        plugin_template.run_hello_world_say_phrase({})
+        copy_diagnostics.run_hello_world_say_phrase({})
 
         assert.same({ "No phrase was given" }, _DATA)
     end)
 
     it("runs #hello-world with default `say word` arguments - 001", function()
-        plugin_template.run_hello_world_say_word("")
+        copy_diagnostics.run_hello_world_say_word("")
 
         assert.same({ "No word was given" }, _DATA)
     end)
 
     it("runs #hello-world say phrase - with all of its arguments", function()
-        plugin_template.run_hello_world_say_phrase({ "Hello,", "World!" }, 2, "lowercase")
+        copy_diagnostics.run_hello_world_say_phrase({ "Hello,", "World!" }, 2, "lowercase")
 
         assert.same({ "Saying phrase", "hello, world!", "hello, world!" }, _DATA)
     end)
 
     it("runs #hello-world say word - with all of its arguments", function()
-        plugin_template.run_hello_world_say_phrase({ "Hi" }, 2, "uppercase")
+        copy_diagnostics.run_hello_world_say_phrase({ "Hi" }, 2, "uppercase")
 
         assert.same({ "Saying phrase", "HI", "HI" }, _DATA)
     end)
@@ -215,19 +215,19 @@ describe("hello world commands - say phrase/word", function()
     after_each(_reset_prints)
 
     it("runs #hello-world with default arguments", function()
-        vim.cmd([[PluginTemplate hello-world say phrase]])
+        vim.cmd([[CopyDiagnostics hello-world say phrase]])
 
         assert.same({ "No phrase was given" }, _DATA)
     end)
 
     it("runs #hello-world say phrase - with all of its arguments", function()
-        vim.cmd([[PluginTemplate hello-world say phrase "Hello, World!" --repeat=2 --style=lowercase]])
+        vim.cmd([[CopyDiagnostics hello-world say phrase "Hello, World!" --repeat=2 --style=lowercase]])
 
         assert.same({ "Saying phrase", "hello, world!", "hello, world!" }, _DATA)
     end)
 
     it("runs #hello-world say word - with all of its arguments", function()
-        vim.cmd([[PluginTemplate hello-world say word "Hi" --repeat=2 --style=uppercase]])
+        vim.cmd([[CopyDiagnostics hello-world say word "Hi" --repeat=2 --style=uppercase]])
 
         assert.same({ "Saying word", "HI", "HI" }, _DATA)
     end)
@@ -238,19 +238,19 @@ describe("goodnight-moon API", function()
     after_each(_reset_prints)
 
     it("runs #goodnight-moon #count-sheep with all of its arguments", function()
-        plugin_template.run_goodnight_moon_count_sheep(3)
+        copy_diagnostics.run_goodnight_moon_count_sheep(3)
 
         assert.same({ "1 Sheep", "2 Sheep", "3 Sheep" }, _DATA)
     end)
 
     it("runs #goodnight-moon #read with all of its arguments", function()
-        plugin_template.run_goodnight_moon_read("a good book")
+        copy_diagnostics.run_goodnight_moon_read("a good book")
 
         assert.same({ "a good book: it is a book" }, _DATA)
     end)
 
     it("runs #goodnight-moon #sleep with all of its arguments", function()
-        plugin_template.run_goodnight_moon_sleep(3)
+        copy_diagnostics.run_goodnight_moon_sleep(3)
 
         assert.same({ "Zzz", "Zzz", "Zzz" }, _DATA)
     end)
@@ -261,19 +261,19 @@ describe("goodnight-moon commands", function()
     after_each(_reset_prints)
 
     it("runs #goodnight-moon #count-sheep with all of its arguments", function()
-        vim.cmd([[PluginTemplate goodnight-moon count-sheep 3]])
+        vim.cmd([[CopyDiagnostics goodnight-moon count-sheep 3]])
 
         assert.same({ "1 Sheep", "2 Sheep", "3 Sheep" }, _DATA)
     end)
 
     it("runs #goodnight-moon #read with all of its arguments", function()
-        vim.cmd([[PluginTemplate goodnight-moon read "a good book"]])
+        vim.cmd([[CopyDiagnostics goodnight-moon read "a good book"]])
 
         assert.same({ "a good book: it is a book" }, _DATA)
     end)
 
     it("runs #goodnight-moon #sleep with all of its arguments", function()
-        vim.cmd([[PluginTemplate goodnight-moon sleep -z -z -z]])
+        vim.cmd([[CopyDiagnostics goodnight-moon sleep -z -z -z]])
 
         assert.same({ "Zzz", "Zzz", "Zzz" }, _DATA)
     end)
@@ -285,22 +285,22 @@ describe("help API", function()
 
     describe("fallback help", function()
         it("works on a nested subparser - 003", function()
-            vim.cmd("PluginTemplate hello-world say")
+            vim.cmd("CopyDiagnostics hello-world say")
             assert.same({ "Usage: {say} {phrase,word} [--help]" }, _DATA)
         end)
     end)
 
     describe("--help flag", function()
         it("works on the base parser", function()
-            vim.cmd("PluginTemplate --help")
+            vim.cmd("CopyDiagnostics --help")
 
             assert.same({
                 [[
-Usage: PluginTemplate {arbitrary-thing,copy-logs,goodnight-moon,hello-world} [--help]
+Usage: CopyDiagnostics {arbitrary-thing,copy-logs,goodnight-moon,hello-world} [--help]
 
 Commands:
     arbitrary-thing    Prepare to sleep or sleep.
-    copy-logs    Get debug logs for PluginTemplate.
+    copy-logs    Get debug logs for CopyDiagnostics.
     goodnight-moon    Prepare to sleep or sleep.
     hello-world    Print hello to the user.
 
@@ -311,7 +311,7 @@ Options:
         end)
 
         it("works on a nested subparser - 001", function()
-            vim.cmd([[PluginTemplate hello-world say --help]])
+            vim.cmd([[CopyDiagnostics hello-world say --help]])
 
             assert.same({
                 [[
@@ -328,7 +328,7 @@ Options:
         end)
 
         it("works on a nested subparser - 002", function()
-            vim.cmd([[PluginTemplate hello-world say phrase --help]])
+            vim.cmd([[CopyDiagnostics hello-world say phrase --help]])
 
             assert.same({
                 [[
@@ -346,7 +346,7 @@ Options:
         end)
 
         it("works on a nested subparser - 003", function()
-            vim.cmd([[PluginTemplate hello-world say word --help]])
+            vim.cmd([[CopyDiagnostics hello-world say word --help]])
 
             assert.same({
                 [[
@@ -364,7 +364,7 @@ Options:
         end)
 
         it("works on the subparsers - 001", function()
-            vim.cmd([[PluginTemplate arbitrary-thing --help]])
+            vim.cmd([[CopyDiagnostics arbitrary-thing --help]])
 
             assert.same({
                 [[
@@ -382,7 +382,7 @@ Options:
         end)
 
         it("works on the subparsers - 002", function()
-            vim.cmd([[PluginTemplate copy-logs --help]])
+            vim.cmd([[CopyDiagnostics copy-logs --help]])
 
             assert.same({
                 [[
@@ -398,7 +398,7 @@ Options:
         end)
 
         it("works on the subparsers - 003", function()
-            vim.cmd([[PluginTemplate goodnight-moon --help]])
+            vim.cmd([[CopyDiagnostics goodnight-moon --help]])
 
             assert.same({
                 [[
@@ -416,7 +416,7 @@ Options:
         end)
 
         it("works on the subparsers - 004", function()
-            vim.cmd([[PluginTemplate hello-world --help]])
+            vim.cmd([[CopyDiagnostics hello-world --help]])
 
             assert.same({
                 [[

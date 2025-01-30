@@ -21,7 +21,7 @@ jobs:
       # Reference: https://github.com/JohnnyMorganz/stylua-action/pull/58
       #
       - name: Install StyLua
-        uses: ColinKennedy/stylua-action@remove_exec_test
+        uses: NickStafford2/stylua-action@remove_exec_test
         with:
           version: latest
           token: ${{ secrets.GITHUB_TOKEN }}

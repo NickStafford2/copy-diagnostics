@@ -1,13 +1,13 @@
---- The main parser for the `:PluginTemplate arbitrary-thing` command.
+--- The main parser for the `:CopyDiagnostics arbitrary-thing` command.
 ---
----@module 'plugin_template._commands.arbitrary_thing.parser'
+---@module 'copy_diagnostics._commands.arbitrary_thing.parser'
 ---
 
 local cmdparse = require("mega.cmdparse")
 
 local M = {}
 
----@return mega.cmdparse.ParameterParser # The main parser for the `:PluginTemplate arbitrary-thing` command.
+---@return mega.cmdparse.ParameterParser # The main parser for the `:CopyDiagnostics arbitrary-thing` command.
 function M.make_parser()
     local parser = cmdparse.ParameterParser.new({ "arbitrary-thing", help = "Prepare to sleep or sleep." })
 
@@ -19,7 +19,7 @@ function M.make_parser()
 
     parser:set_execute(function(data)
         ---@cast data mega.cmdparse.NamespaceExecuteArguments
-        local runner = require("plugin_template._commands.arbitrary_thing.runner")
+        local runner = require("copy_diagnostics._commands.arbitrary_thing.runner")
 
         local names = {}
 

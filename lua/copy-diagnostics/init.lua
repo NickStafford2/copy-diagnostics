@@ -3,16 +3,16 @@
 --- If a function's signature here changes in some incompatible way, this
 --- package must get a new **major** version.
 ---
----@module 'plugin_template'
+---@module 'copy_diagnostics'
 ---
 
-local configuration = require("plugin_template._core.configuration")
-local arbitrary_thing_runner = require("plugin_template._commands.arbitrary_thing.runner")
-local copy_logs_runner = require("plugin_template._commands.copy_logs.runner")
-local count_sheep = require("plugin_template._commands.goodnight_moon.count_sheep")
-local read = require("plugin_template._commands.goodnight_moon.read")
-local say_runner = require("plugin_template._commands.hello_world.say.runner")
-local sleep = require("plugin_template._commands.goodnight_moon.sleep")
+local configuration = require("copy_diagnostics._core.configuration")
+local arbitrary_thing_runner = require("copy_diagnostics._commands.arbitrary_thing.runner")
+local copy_logs_runner = require("copy_diagnostics._commands.copy_logs.runner")
+local count_sheep = require("copy_diagnostics._commands.goodnight_moon.count_sheep")
+local read = require("copy_diagnostics._commands.goodnight_moon.read")
+local say_runner = require("copy_diagnostics._commands.hello_world.say.runner")
+local sleep = require("copy_diagnostics._commands.goodnight_moon.sleep")
 
 local M = {}
 

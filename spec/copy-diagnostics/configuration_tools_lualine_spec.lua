@@ -1,16 +1,16 @@
 --- Make sure configuration health checks for lua succeed or fail where they should.
 ---
----@module 'plugin_template.configuration_tools_lualine_spec'
+---@module 'copy_diagnostics.configuration_tools_lualine_spec'
 ---
 
-local configuration_ = require("plugin_template._core.configuration")
-local health = require("plugin_template.health")
+local configuration_ = require("copy_diagnostics._core.configuration")
+local health = require("copy_diagnostics.health")
 
 ---@diagnostic disable: assign-type-mismatch
 
 --- Make sure `data`, whether undefined, defined, or partially defined, is broken.
 ---
----@param data plugin_template.Configuration? The user customizations, if any.
+---@param data copy_diagnostics.Configuration? The user customizations, if any.
 ---@param messages string[] All found, expected error messages.
 ---
 local function _assert_bad(data, messages)
@@ -28,7 +28,7 @@ end
 
 --- Make sure `data`, whether undefined, defined, or partially defined, works.
 ---
----@param data plugin_template.Configuration? The user customizations, if any.
+---@param data copy_diagnostics.Configuration? The user customizations, if any.
 ---
 local function _assert_good(data)
     data = configuration_.resolve_data(data)

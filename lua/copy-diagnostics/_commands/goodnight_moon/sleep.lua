@@ -1,11 +1,11 @@
 --- The main file that implements `goodnight-moon sleep` outside of COMMAND mode.
 ---
----@module 'plugin_template._commands.goodnight_moon.sleep.runner'
+---@module 'copy_diagnostics._commands.goodnight_moon.sleep.runner'
 ---
 
 local logging = require("mega.logging")
 
-local _LOGGER = logging.get_logger("plugin_template._commands.goodnight_moon.sleep")
+local _LOGGER = logging.get_logger("copy_diagnostics._commands.goodnight_moon.sleep")
 
 local M = {}
 

@@ -1,17 +1,17 @@
 --- Make that the Lualine component works as expected.
 ---
----@module 'plugin_template.lualine_spec'
+---@module 'copy_diagnostics.lualine_spec'
 ---
 
 local highlight = require("lualine.highlight")
 local loader = require("lualine.utils.loader")
-local lualine_plugin_template = require("lualine.components.plugin_template")
+local lualine_copy_diagnostics = require("lualine.components.plugin_template")
 local mock_test = require("test_utilities.mock_test")
-local plugin_template = require("plugin_template")
+local copy_diagnostics = require("plugin_template")
 
 ---@return table # The generated Lualine component.
 local function _make_component()
-    return lualine_plugin_template({ self = { section = "y" } })
+    return lualine_copy_diagnostics({ self = { section = "y" } })
 end
 
 --- Delete all existing highlight groups and recreate them (so we can keep tests clean).
@@ -22,7 +22,7 @@ end
 
 --- Enable lualine so we can create lualine component(s) and other various tasks.
 local function _setup_lualine()
-    lualine_plugin_template.PREVIOUS_COMMAND = nil
+    lualine_copy_diagnostics.PREVIOUS_COMMAND = nil
 
     mock_test.silence_all_internal_prints()
 
@@ -48,9 +48,9 @@ describe("API calls", function()
 
         assert.is_nil(component:update_status())
 
-        plugin_template.run_arbitrary_thing()
+        copy_diagnostics.run_arbitrary_thing()
 
-        assert.equal("%#lualine_y_plugin_template_arbitrary_thing# Arbitrary Thing", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_arbitrary_thing# Arbitrary Thing", component:update_status())
     end)
 
     it("works with #copy-logs", function()
@@ -58,9 +58,9 @@ describe("API calls", function()
 
         assert.is_nil(component:update_status())
 
-        plugin_template.run_copy_logs()
+        copy_diagnostics.run_copy_logs()
 
-        assert.equal("%#lualine_y_plugin_template_copy_logs#󰈔 Copy Logs", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_copy_logs#󰈔 Copy Logs", component:update_status())
     end)
 
     it("works with #goodnight-moon #count-sheep", function()
@@ -68,9 +68,9 @@ describe("API calls", function()
 
         assert.is_nil(component:update_status())
 
-        plugin_template.run_goodnight_moon_count_sheep(10)
+        copy_diagnostics.run_goodnight_moon_count_sheep(10)
 
-        assert.equal("%#lualine_y_plugin_template_goodnight_moon#⏾ Goodnight moon", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_goodnight_moon#⏾ Goodnight moon", component:update_status())
     end)
 
     it("works with #goodnight-moon #read", function()
@@ -78,9 +78,9 @@ describe("API calls", function()
 
         assert.is_nil(component:update_status())
 
-        plugin_template.run_goodnight_moon_read("a book")
+        copy_diagnostics.run_goodnight_moon_read("a book")
 
-        assert.equal("%#lualine_y_plugin_template_goodnight_moon#⏾ Goodnight moon", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_goodnight_moon#⏾ Goodnight moon", component:update_status())
     end)
 
     it("works with #goodnight-moon #sleep", function()
@@ -88,9 +88,9 @@ describe("API calls", function()
 
         assert.is_nil(component:update_status())
 
-        plugin_template.run_goodnight_moon_sleep()
+        copy_diagnostics.run_goodnight_moon_sleep()
 
-        assert.equal("%#lualine_y_plugin_template_goodnight_moon#⏾ Goodnight moon", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_goodnight_moon#⏾ Goodnight moon", component:update_status())
     end)
 
     it("works with #hello-world #say phrase", function()
@@ -98,9 +98,9 @@ describe("API calls", function()
 
         assert.is_nil(component:update_status())
 
-        plugin_template.run_hello_world_say_phrase({ "A phrase!" })
+        copy_diagnostics.run_hello_world_say_phrase({ "A phrase!" })
 
-        assert.equal("%#lualine_y_plugin_template_hello_world# Hello, World!", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_hello_world# Hello, World!", component:update_status())
     end)
 
     it("works with #hello-world #say word", function()
@@ -108,9 +108,9 @@ describe("API calls", function()
 
         assert.is_nil(component:update_status())
 
-        plugin_template.run_hello_world_say_word("some_text_here")
+        copy_diagnostics.run_hello_world_say_word("some_text_here")
 
-        assert.equal("%#lualine_y_plugin_template_hello_world# Hello, World!", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_hello_world# Hello, World!", component:update_status())
     end)
 end)
 
@@ -122,9 +122,9 @@ describe("Command calls", function()
 
         assert.is_nil(component:update_status())
 
-        vim.cmd([[PluginTemplate arbitrary-thing]])
+        vim.cmd([[CopyDiagnostics arbitrary-thing]])
 
-        assert.equal("%#lualine_y_plugin_template_arbitrary_thing# Arbitrary Thing", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_arbitrary_thing# Arbitrary Thing", component:update_status())
     end)
 
     it("works with #copy-logs", function()
@@ -132,9 +132,9 @@ describe("Command calls", function()
 
         assert.is_nil(component:update_status())
 
-        vim.cmd([[PluginTemplate copy-logs]])
+        vim.cmd([[CopyDiagnostics copy-logs]])
 
-        assert.equal("%#lualine_y_plugin_template_copy_logs#󰈔 Copy Logs", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_copy_logs#󰈔 Copy Logs", component:update_status())
     end)
 
     it("works with #goodnight-moon #count-sheep", function()
@@ -142,9 +142,9 @@ describe("Command calls", function()
 
         assert.is_nil(component:update_status())
 
-        vim.cmd([[PluginTemplate goodnight-moon count-sheep 10]])
+        vim.cmd([[CopyDiagnostics goodnight-moon count-sheep 10]])
 
-        assert.equal("%#lualine_y_plugin_template_goodnight_moon#⏾ Goodnight moon", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_goodnight_moon#⏾ Goodnight moon", component:update_status())
     end)
 
     it("works with #goodnight-moon #read", function()
@@ -152,9 +152,9 @@ describe("Command calls", function()
 
         assert.is_nil(component:update_status())
 
-        vim.cmd([[PluginTemplate goodnight-moon read "a book"]])
+        vim.cmd([[CopyDiagnostics goodnight-moon read "a book"]])
 
-        assert.equal("%#lualine_y_plugin_template_goodnight_moon#⏾ Goodnight moon", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_goodnight_moon#⏾ Goodnight moon", component:update_status())
     end)
 
     it("works with #goodnight-moon #sleep", function()
@@ -162,9 +162,9 @@ describe("Command calls", function()
 
         assert.is_nil(component:update_status())
 
-        vim.cmd([[PluginTemplate goodnight-moon sleep -zzz]])
+        vim.cmd([[CopyDiagnostics goodnight-moon sleep -zzz]])
 
-        assert.equal("%#lualine_y_plugin_template_goodnight_moon#⏾ Goodnight moon", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_goodnight_moon#⏾ Goodnight moon", component:update_status())
     end)
 
     it("works with #hello-world #say phrase", function()
@@ -172,9 +172,9 @@ describe("Command calls", function()
 
         assert.is_nil(component:update_status())
 
-        vim.cmd([[PluginTemplate hello-world say phrase "something more text"]])
+        vim.cmd([[CopyDiagnostics hello-world say phrase "something more text"]])
 
-        assert.equal("%#lualine_y_plugin_template_hello_world# Hello, World!", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_hello_world# Hello, World!", component:update_status())
     end)
 
     it("works with #hello-world #say word", function()
@@ -182,8 +182,8 @@ describe("Command calls", function()
 
         assert.is_nil(component:update_status())
 
-        vim.cmd([[PluginTemplate hello-world say word some_text_here]])
+        vim.cmd([[CopyDiagnostics hello-world say word some_text_here]])
 
-        assert.equal("%#lualine_y_plugin_template_hello_world# Hello, World!", component:update_status())
+        assert.equal("%#lualine_y_copy_diagnostics_hello_world# Hello, World!", component:update_status())
     end)
 end)

@@ -1,6 +1,6 @@
 --- The main file that implements `arbitrary-thing` outside of COMMAND mode.
 ---
----@module 'plugin_template._commands.arbitrary_thing.runner'
+---@module 'copy_diagnostics._commands.arbitrary_thing.runner'
 ---
 
 local M = {}
